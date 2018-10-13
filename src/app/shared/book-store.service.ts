@@ -4,7 +4,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { retry, map, catchError } from 'rxjs/operators';
-import { throwError } from "rxjs";
+import { throwError } from 'rxjs';
 
 import { Book, Thumbnail } from './book';
 import { BookFactory } from './book-factory';
@@ -15,10 +15,10 @@ import { BookRaw } from './book-raw';
 })
 export class BookStoreService {
 
-  //books: Book[];
+  // books: Book[];
 
-  //private api = 'https://book-monkey2-api.angular-buch.com';
-  //private api = 'http://52.16.13.153:3001';
+  // private api = 'https://book-monkey2-api.angular-buch.com';
+  // private api = 'http://52.16.13.153:3001';
   private api = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
@@ -99,6 +99,14 @@ export class BookStoreService {
         map(rawBooks => rawBooks
           .map(rawBook => BookFactory.fromObject(rawBook)),
         ),
+        catchError(this.errorHandler)
+      );
+  }
+
+  check(isbn: string): Observable<boolean> {
+    return this.http
+      .get(`${this.api}/book/${isbn}/check`)
+      .pipe(
         catchError(this.errorHandler)
       );
   }

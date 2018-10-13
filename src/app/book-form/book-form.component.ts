@@ -83,7 +83,7 @@ export class BookFormComponent implements OnInit {
   }
 
   submitForm() {
-    //filter empty values
+    // filter empty values
     this.myForm.value.authors =
       this.myForm.value.authors.filter(author => author);
 
@@ -94,13 +94,13 @@ export class BookFormComponent implements OnInit {
 
     if (this.isUpdatingBook) {
       this.bs.update(book).subscribe(res => {
-        this.router.navigate(['../../books', book.isbn], { relativeTo : this.route });
+        this.router.navigate(['../../books', book.isbn], { relativeTo: this.route });
       });
     } else {
       this.bs.create(book).subscribe(res => {
         this.book = BookFactory.empty();
         this.myForm.reset(this.book);
-      })
+      });
     }
   }
 
