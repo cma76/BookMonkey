@@ -1,3 +1,4 @@
+import { BookValidators } from './../shared/book.validators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
@@ -46,7 +47,8 @@ export class BookFormComponent implements OnInit {
     this.myForm = this.fb.group({
       title: [this.book.title, Validators.required],
       subtitle: this.book.subtitle,
-      isbn: [this.book.isbn, [Validators.required, Validators.minLength(10), Validators.maxLength(13)]],
+      isbn: [this.book.isbn, [Validators.required, BookValidators.isbnFormat],
+        this.isUpdatingBook ? null : BookValidators.isbnExists(this.bs)],
       description: this.book.description,
       authors: this.authors,
       thumbnails: this.thumbnails,
@@ -57,7 +59,7 @@ export class BookFormComponent implements OnInit {
   }
 
   buildAuthorsArray() {
-    this.authors = this.fb.array(this.book.authors, Validators.required);
+    this.authors = this.fb.array(this.book.authors, BookValidators.atLeastOneAuthor);
   }
 
   buildThumbnailsArray() {
