@@ -19,7 +19,7 @@
       </div>
       <div class="four wide column">
         <h4 class="ui header">Erschienen</h4>
-        {{ book.published }}
+        {{ book?.published | date:'longDate' }}
       </div>
       <div class="four wide column">
         <h4 class="ui header">Rating</h4>
@@ -38,8 +38,11 @@
   </div>
 </div>
 
+<a class="ui tiny yellow labeled icon button" [routerLink]="['../../admin', book?.isbn]">
+  <i class="write icon"></i> Buch bearbeiten
+</a>
 <!--
 <button (click)="showBookList()" class="ui red button">
   Zurück zur Buchliste
 </button>
---> 
+-->

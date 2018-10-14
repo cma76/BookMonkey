@@ -18,7 +18,7 @@ export class BookDetailsComponent implements OnInit {
 */
 
   book: Book = BookFactory.empty();
-  
+
   constructor(
     private bs: BookStoreService,
     private route: ActivatedRoute
@@ -26,14 +26,14 @@ export class BookDetailsComponent implements OnInit {
 
   ngOnInit() {
     const params = this.route.snapshot.params;
-    //this.book = this.bs.getSingle(params['isbn']);
+    // this.book = this.bs.getSingle(params['isbn']);
     this.bs.getSingle(params['isbn']).subscribe(retrievedBook => this.book = retrievedBook);
   }
-  
+
   getRating(num: number) {
     return new Array(num);
   }
-  
+
 /*
   showBookList() {
     this.showListEvent.emit();
