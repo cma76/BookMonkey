@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Book } from '../shared/book';
-import { BookStoreService } from '../shared/book-store.service';
-import { BookFactory } from '../shared/book-factory';
+import { Book } from '../../shared/book';
+import { BookStoreService } from '../../shared/book-store.service';
+import { BookFactory } from '../../shared/book-factory';
 
 @Component({
   selector: 'bm-book-details',

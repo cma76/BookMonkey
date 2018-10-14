@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Book, Thumbnail } from '../shared/book';
-import { BookStoreService } from '../shared/book-store.service';
+import { Book, Thumbnail } from '../../shared/book';
+import { BookStoreService } from '../../shared/book-store.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'bm-book-list',
@@ -9,18 +10,21 @@ import { BookStoreService } from '../shared/book-store.service';
 })
 export class BookListComponent implements OnInit {
 
-  books: Book[];
-  @Output() showDetailsEvent = new EventEmitter<Book>();
+  // books: Book[];
+  books$: Observable<Book[]>;
+  // @Output() showDetailsEvent = new EventEmitter<Book>();
 
   constructor(private bs: BookStoreService) { }
 
   ngOnInit() {
-    //this.books = this.bs.getAll();
-    this.bs.getAll().subscribe(res => this.books = res);
+    // this.books = this.bs.getAll();
+    this.books$ = this.bs.getAll();
   }
-  
+
+  /*
   showDetails(book: Book) {
     this.showDetailsEvent.emit(book);
   }
+  */
 
 }

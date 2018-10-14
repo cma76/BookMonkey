@@ -3,9 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 
-import { Book } from '../shared/book';
-import { BookFactory } from '../shared/book-factory';
-import { BookStoreService } from '../shared/book-store.service';
+import { Book } from '../../shared/book';
+import { BookFactory } from '../../shared/book-factory';
+import { BookStoreService } from '../../shared/book-store.service';
 import { BookFormErrorMessages } from './book-form-error-messages';
 
 @Component({

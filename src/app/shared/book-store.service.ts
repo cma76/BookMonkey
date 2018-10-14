@@ -3,12 +3,13 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 
 import { Observable } from 'rxjs';
-import { retry, map, catchError } from 'rxjs/operators';
+import { retry, map, delay, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
 import { Book, Thumbnail } from './book';
 import { BookFactory } from './book-factory';
 import { BookRaw } from './book-raw';
+
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,7 @@ export class BookStoreService {
       .pipe(
         retry(3),
         map(BookFactory.fromObjectArray),
+        delay(600),
         catchError(this.errorHandler)
       );
 
