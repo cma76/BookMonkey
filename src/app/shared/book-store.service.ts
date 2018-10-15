@@ -65,6 +65,7 @@ export class BookStoreService {
       .pipe(
         retry(3),
         map(BookFactory.fromObject),
+        delay(1000),
         catchError(this.errorHandler)
       );
   }

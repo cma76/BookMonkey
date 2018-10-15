@@ -1,5 +1,4 @@
-import { BookModule } from './book/book.module';
-import { AdminModule } from './admin/admin.module';
+import { BookResolverService } from './shared/book-resolver.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -23,13 +22,12 @@ import localeDe from '@angular/common/locales/de';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    AdminModule,
-    BookModule
+    HttpClientModule
   ],
   providers: [
     BookStoreService,
-    { provide: LOCALE_ID, useValue: 'de-CH' }
+    { provide: LOCALE_ID, useValue: 'de-CH' },
+    BookResolverService
   ],
   bootstrap: [AppComponent]
 })

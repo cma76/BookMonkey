@@ -27,17 +27,13 @@ export class BookFormComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    const isbn = this.route.snapshot.params['isbn'];
-    if (isbn) {
+    const data = this.route.snapshot.data;
+    if (data['book']) {
       this.isUpdatingBook = true;
-      this.bs.getSingle(isbn).subscribe(book => {
-        this.book = book;
-        this.initBook();
-      });
+      this.book = data['book'];
     }
 
     this.initBook();
-
   }
 
   initBook() {
